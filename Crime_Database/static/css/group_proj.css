@@ -1,0 +1,48 @@
+body {
+    background-color: #333; /* nice gray #333*/
+    padding: 10px;
+  }
+  
+    h1{
+        color: rgb(255, 255, 255);
+        margin: 5px;
+        font-size: 35px;
+        text-align: center;
+    }
+
+    h2{
+        color: rgb(255, 255, 255);
+        margin: 5px;
+        font-size: 20px;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+  
+  #myCanvas {
+    border: 5px solid rgb(255, 255, 255);
+    border-radius: 10px;
+    background-color: rgb(255, 255, 255);
+    width: 1000px;
+    margin: auto;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+  }
+  
+  #myButton {
+    background-color: rgb(108, 199, 255); /*rgb(170, 244, 255); /* bright/pastel green #AFA*/
+    width: 200px;
+    color: #000;
+        border-radius: 10px;
+    border: 0px;
+    padding: 10px;
+    margin: 8px;
+    font-size: 18px;
+    }
+  
+  #myButton:hover {
+    background-color: #555; /* Add a dark-grey background on hover */
+  }
