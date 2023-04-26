@@ -3,3 +3,4 @@
 # Thomas Nguyen
 # Riley Sheehy
 # Talha Hussain
+# Chloe Farrell
