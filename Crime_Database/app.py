@@ -2,6 +2,7 @@ from flask import Flask, render_template
 import mysql.connector
 import json
 from database import populate_database
+from geopy.geocoders import MapQuest
 
 # Added Static Folder Information and and Static URL Path so that 'css/group_proj.css' is accessible from the 
 # Hypertext Markup Language HTML Page. 
@@ -128,13 +129,31 @@ def crime_type(): #Display pie chart template and push data to chart
 @app.route('/food_desert')
 def food_desert(): #Display heatmap template and push data to heatmap
     #query and fetch latitudes and longitudes from database
-    cursor.execute('SELECT Latitude, Longitude, food_source_quantity FROM crime_database.neighborhood WHERE Latitude!=0 AND Longitude!=0')
+     # cursor.execute('SELECT Latitude, Longitude, food_source_quantity FROM crime_database.neighborhood WHERE Latitude!=0 AND Longitude!=0')
+    cursor.execute('SELECT neighborhood_name, food_source_quantity FROM crime_database.neighborhood WHERE food_source_quantity !=0')
     markers = cursor.fetchall()
+    # Set up the MapQuest geocoder with your API key
+    geolocator = MapQuest(api_key="X7Z6sQ41SOtQYuO7GmD8jVPp8oE1iUUP")
+    
+    # Create a new list to store the modified data
+    modified_markers = []
 
-    # Convert the tuples in the markers variable to lists so that JavaScript can properly interpret the
-    # information. 
-    return render_template("food_desert.html", heatmapData=[list(x) for x in markers])
+    for x in markers:
+        neighborhood = x[0]  # Get the neighborhood name from the tuple
 
+        # Perform geocoding to get the latitude and longitude
+        location = geolocator.geocode(neighborhood)
+
+        if location:
+            latitude = location.latitude
+            longitude = location.longitude
+            if latitude < 39.4 and latitude > 39.2:
+                x = [latitude, longitude, x[1]]  # Modify the tuple to include latitude, longitude, and food number
+                modified_markers.append(list(x))  # Convert the modified tuple to a list and add it to the new list
+
+    # Return the modified_markers list to the HTML template
+    return render_template("food_desert.html", heatmapData=modified_markers)
+   
 @app.route('/weapon')
 def weapon(): #Display heatmap template and push data to heatmap
     #query and fetch latitudes and longitudes from database
@@ -149,15 +168,86 @@ def weapon(): #Display heatmap template and push data to heatmap
     pieChartData_json = json.dumps(pieData)
     return render_template("weapon.html", pieChartData_json=pieChartData_json)
 
-# @app.route('/neighborhood')
-# def neighborhood(): #Display heatmap template and push data to heatmap
-#     #query and fetch latitudes and longitudes from database
-#     cursor.execute('SELECT Latitude, Longitude FROM crime WHERE Latitude!=0 AND Longitude!=0')
-#     markers = cursor.fetchall()
+@app.route('/crime_time_noon')
+def crime_time_noon(): #Display heatmap template and push data to heatmap
+    #query and fetch latitudes and longitudes from database
+    cursor.execute("SELECT Latitude, Longitude FROM crime_database.crime WHERE crime_time BETWEEN '08:00:00+00' AND '16:00:00+00'")
+    markers = cursor.fetchall()
+    # Convert the tuples in the markers variable to lists so that JavaScript can properly interpret the
+    # information. 
+    return render_template("crime_time_noon.html", heatmapData=[list(x) for x in markers])
 
-#     # Convert the tuples in the markers variable to lists so that JavaScript can properly interpret the
-#     # information. 
-#     return render_template("neighborhood.html", heatmapData=[list(x) for x in markers])
+@app.route('/crime_time_afternoon')
+def crime_time_afternoon(): #Display heatmap template and push data to heatmap
+    #query and fetch latitudes and longitudes from database
+    cursor.execute("SELECT Latitude, Longitude FROM crime_database.crime WHERE crime_time BETWEEN '16:00:00+00' AND '24:00:00+00'")
+    markers = cursor.fetchall()
+    # Convert the tuples in the markers variable to lists so that JavaScript can properly interpret the
+    # information. 
+    return render_template("crime_time_afternoon.html", heatmapData=[list(x) for x in markers])
+
+@app.route('/crime_time_morning')
+def crime_time_morning(): #Display heatmap template and push data to heatmap
+    #query and fetch latitudes and longitudes from database
+    cursor.execute("SELECT Latitude, Longitude FROM crime_database.crime WHERE crime_time BETWEEN '00:00:00+00' AND '08:00:00+00'")
+    markers = cursor.fetchall()
+    # Convert the tuples in the markers variable to lists so that JavaScript can properly interpret the
+    # information. 
+    return render_template("crime_time_morning.html", heatmapData=[list(x) for x in markers])
+
+@app.route('/crime_area')
+def crime_area(): #Display heatmap template and push data to heatmap
+    #query and fetch latitudes and longitudes from database
+    cursor.execute('SELECT Latitude, Longitude FROM crime WHERE Longitude<=-76.57 AND Longitude>= -76.7 AND Latitude>=39.282 AND Latitude<=39.321')
+    markers = cursor.fetchall()
+
+    # Convert the tuples in the markers variable to lists so that JavaScript can properly interpret the
+    # information. 
+    return render_template("crime_area.html", heatmapData=[list(x) for x in markers])
+
+@app.route('/crime_area_northeast')
+def crime_area_northeast(): #Display heatmap template and push data to heatmap
+    #query and fetch latitudes and longitudes from database
+    cursor.execute('SELECT Latitude, Longitude FROM crime WHERE Longitude<=-76.570 AND Longitude>= -76.615 AND Latitude>=39.321')
+    markers = cursor.fetchall()
+
+    # Convert the tuples in the markers variable to lists so that JavaScript can properly interpret the
+    # information. 
+    return render_template("crime_area_northeast.html", heatmapData=[list(x) for x in markers])
+
+@app.route('/crime_area_northwest')
+def crime_area_northwest(): #Display heatmap template and push data to heatmap
+    #query and fetch latitudes and longitudes from database
+    cursor.execute('SELECT Latitude, Longitude FROM crime WHERE Longitude>=-76.700 AND Longitude<= -76.615 AND Latitude>=39.321')
+    markers = cursor.fetchall()
+
+    # Convert the tuples in the markers variable to lists so that JavaScript can properly interpret the
+    # information. 
+    return render_template("crime_area_northwest.html", heatmapData=[list(x) for x in markers])
+
+@app.route('/crime_area_southeast')
+def crime_area_southeast(): #Display heatmap template and push data to heatmap
+    #query and fetch latitudes and longitudes from database
+    cursor.execute('SELECT Latitude, Longitude FROM crime WHERE Longitude>=-76.615 AND Longitude<= -76.570 AND Latitude<=39.296')
+    markers = cursor.fetchall()
+
+    # Convert the tuples in the markers variable to lists so that JavaScript can properly interpret the
+    # information. 
+    return render_template("crime_area_southeast.html", heatmapData=[list(x) for x in markers])
+
+@app.route('/crime_area_southwest')
+def crime_area_southwest(): #Display heatmap template and push data to heatmap
+    #query and fetch latitudes and longitudes from database
+    cursor.execute('SELECT Latitude, Longitude FROM crime WHERE Longitude>=-76.700 AND Longitude<= -76.615 AND Latitude<=39.296')
+    markers = cursor.fetchall()
+
+    # Convert the tuples in the markers variable to lists so that JavaScript can properly interpret the
+    # information. 
+    return render_template("crime_area_southwest.html", heatmapData=[list(x) for x in markers])
+
+
+
+
 
 if __name__ == '__main__':
     app.run()
