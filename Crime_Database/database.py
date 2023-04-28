@@ -5,7 +5,7 @@ import numpy as np
 mydb = mysql.connector.connect(
     host='localhost',
     user='root',
-    password='1234',
+    password='',
     port='3306',
     database='crime_database'
 )
@@ -65,8 +65,6 @@ def createTables():
            )""")
 
     return 0
-
-# Inserts data into the Weapon Table.
 
 '''
 The Function "def insertWeapon(crime_data)" inserts data into the Weapon Table.
@@ -141,7 +139,7 @@ def insertNeighborhood(crime_data):
             except:
                 pass
         print(neighborhood[i])
-        print("#################################HIIIIIIIIIIIIIIII")
+        print("#################################")
 
         # Insert all the data that was fetched from the Excel Microsoft Office Open Extensible Markup Language XML
         # Format Spreadsheet, .xlsx, and Comma-Separated Values CSV Files into a Database.
