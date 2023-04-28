@@ -12,7 +12,7 @@
    * py -m pip install install python-dotenv
    * pip install pandas
    * pip install numpy
-   NOTE: Make sure that the installation commands are installed in the correct "C:\...." File Path where your Python File will be located. 
+      - NOTE: Make sure that the installation commands are installed in the correct "C:\...." File Path where your  Python File will be located. 
 
 4. In Microsoft Windows Command Prompt or Source-Code Editor that you chose, open the file "database.py" and make  
    edits to the values that are assigned to the configuration variables in lines 6 to 10 within the "mydb = mysql.connector.connect()" changing all the configuration values after 'host=', 'user=', 'password=', 'port=',         and 'database=' to match the mysql server you are running.
