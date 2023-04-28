@@ -8,10 +8,10 @@
 
 3. Third, within either the Microsoft Windows Command Prompt, Visual Studio Code, PyCharm, or any other possible
    source-code editor that can run Python code, type the following commands in your terminal to successfully install those commands:
-   pip install mysql-connector-python
-   py -m pip install install python-dotenv
-   pip install pandas
-   pip install numpy
+   * pip install mysql-connector-python
+   * py -m pip install install python-dotenv
+   * pip install pandas
+   * pip install numpy
    NOTE: Make sure that the installation commands are installed in the correct "C:\...." File Path where your Python File will be located. 
 
 4. In Microsoft Windows Command Prompt or Source-Code Editor that you chose, open the file "database.py" and make  
