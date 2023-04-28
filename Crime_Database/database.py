@@ -5,13 +5,11 @@ import numpy as np
 mydb = mysql.connector.connect(
     host='localhost',
     user='root',
-    password='1234',
+    password='',
     port='3306',
     database='crime_database'
 )
 
-
-# mydb.execute("PRAGMA foreign_keys = 1")
 cursor = mydb.cursor()
 
 '''
@@ -65,8 +63,6 @@ def createTables():
            )""")
 
     return 0
-
-# Inserts data into the Weapon Table.
 
 '''
 The Function "def insertWeapon(crime_data)" inserts data into the Weapon Table.
@@ -141,7 +137,7 @@ def insertNeighborhood(crime_data):
             except:
                 pass
         print(neighborhood[i])
-        print("#################################HIIIIIIIIIIIIIIII")
+        print("#################################")
 
         # Insert all the data that was fetched from the Excel Microsoft Office Open Extensible Markup Language XML
         # Format Spreadsheet, .xlsx, and Comma-Separated Values CSV Files into a Database.
@@ -200,10 +196,12 @@ def insertCrime(crime_data):
                 # Add Spacing between the Data and Time using Python's "split()" Function.
                 datetime = crime_array[i][1].split(" ")
 
-                # Fetch the time from the First Index that is Index 1 and then store it in the "time" Variable.
-                cursor.execute('INSERT INTO crime (crime_id, neighborhood_name, weapon_id, type_name, crime_date, crime_time, latitude, longitude) VALUES(%s, %s, %s, %s, %s, %s, %s, %s)',
-                            (i, crime_array[i][6], j, crime_array[i][2], datetime[0], datetime[1], crime_array[i][7],crime_array[i][8]))
-                mydb.commit()
+                # If there is no latitude or longitude for an entry, then that entire entry will be ignored.
+                if crime_array[i][7] != 0 and crime_array[i][8] != 0:    
+                    # Fetch the time from the First Index that is Index 1 and then store it in the "time" Variable.
+                    cursor.execute('INSERT INTO crime (crime_id, neighborhood_name, weapon_id, type_name, crime_date, crime_time, latitude, longitude) VALUES(%s, %s, %s, %s, %s, %s, %s, %s)',
+                                (i, crime_array[i][6], j, crime_array[i][2], datetime[0], datetime[1], crime_array[i][7],crime_array[i][8]))
+                    mydb.commit()
     return 0
 
 
