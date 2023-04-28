@@ -28,7 +28,7 @@
 
 7. In "MySQL 8.0 Command Line Client" type "CREATE DATABASE", then the name of the database that you assigned
    to "database_name=" in line 10 of "database.py" Python code before you ran it, and then a semicolon ";". For example, if you assigned the value of the name of your database within the single quotation marks ''        after "database_name=" in line 10 of the "database.py" Python code to the default name "crime_database" then the full command that you would type and then execute in "MySQL 8.0 Command Line Client" would be "CREATE DATABASE crime_database;". As a result of rerunning the command "show DATABASES;", you will now see that one of the databases listed in "MySQL 8.0 Command Line Client" matches up with the name of your database that you manually typed earlier within the single quotation marks '' after "database_name=" in line 10 of the Python
-   Code "database.py". 
+   Code "database.py".
 
 8. Then, if you are using Microsoft Windows, click on the Windows "Start" menu located on the bottom left-corner of
    your computer screen and then in the Search Bar next to the Windows "Start" menu, type "mysql workbench" to search for "MySQL Workbench 8.0 CE" App on your computer. The "MySQL Workbench 8.0 CE" Application will be the tool to use for generating all possible Structured Query Language SQL expressions after running the Python
