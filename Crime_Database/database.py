@@ -5,11 +5,7 @@ import numpy as np
 mydb = mysql.connector.connect(
     host='localhost',
     user='root',
-<<<<<<< Updated upstream
     password='',
-=======
-    password='Sthblue0423306!',
->>>>>>> Stashed changes
     port='3306',
     database='crime_database'
 )
