@@ -8,11 +8,11 @@
 
 3. Third, within either the Microsoft Windows Command Prompt, Visual Studio Code, PyCharm, or any other possible
    source-code editor that can run Python code, type the following commands in your terminal to successfully install those commands:
-   pip install mysql-connector-python
-   py -m pip install install python-dotenv
-   pip install pandas
-   pip install numpy
-   NOTE: Make sure that the installation commands are installed in the correct "C:\...." File Path where your Python File will be located. 
+   * pip install mysql-connector-python
+   * py -m pip install install python-dotenv
+   * pip install pandas
+   * pip install numpy
+      - NOTE: Make sure that the installation commands are installed in the correct "C:\...." File Path where your  Python File will be located. 
 
 4. In Microsoft Windows Command Prompt or Source-Code Editor that you chose, open the file "database.py" and make  
    edits to the values that are assigned to the configuration variables in lines 6 to 10 within the "mydb = mysql.connector.connect()" changing all the configuration values after 'host=', 'user=', 'password=', 'port=',         and 'database=' to match the mysql server you are running.
@@ -27,8 +27,8 @@
    in MySQL. If one of the listed database names matches the assigned value that you typed earlier in the single quotation marks '' after "database_name=" in line 10 of "database.py" Python code, then skip Step 7 and go onto Step 8, otherwise, continue to Step 7 if "MySQL 8.0 Command Line Client" did not list the name of your database that you manually typed earlier in the single quotation marks '' after "database_name=" in line 10 of the Python code "database.py".
 
 7. In "MySQL 8.0 Command Line Client" type "CREATE DATABASE", then the name of the database that you assigned
-   to "database_name=" in line 10 of "database.py" Python code before you ran it, and then a semicolon ";". For example, if you assigned the value of the name of your database within the single quotation marks ''        after  "database_name=" in line 10 of the "database.py" Python code to the default name "crime_database" then the full command that you would type and then execute in "MySQL 8.0 Command Line Client" would be "CREATE DATABASE crime_database;". As a result of rerunning the command "show DATABASES", you will now see that one      of the databases listed in "MySQL 8.0 Command Line Client" matches up with the name of your database that you manually typed earlier within the single quotation marks '' after "database_name=" in line 10 of the Python
-   Code "database.py". 
+   to "database_name=" in line 10 of "database.py" Python code before you ran it, and then a semicolon ";". For example, if you assigned the value of the name of your database within the single quotation marks ''        after "database_name=" in line 10 of the "database.py" Python code to the default name "crime_database" then the full command that you would type and then execute in "MySQL 8.0 Command Line Client" would be "CREATE DATABASE crime_database;". As a result of rerunning the command "show DATABASES;", you will now see that one of the databases listed in "MySQL 8.0 Command Line Client" matches up with the name of your database that you manually typed earlier within the single quotation marks '' after "database_name=" in line 10 of the Python
+   Code "database.py".
 
 8. Then, if you are using Microsoft Windows, click on the Windows "Start" menu located on the bottom left-corner of
    your computer screen and then in the Search Bar next to the Windows "Start" menu, type "mysql workbench" to search for "MySQL Workbench 8.0 CE" App on your computer. The "MySQL Workbench 8.0 CE" Application will be the tool to use for generating all possible Structured Query Language SQL expressions after running the Python
