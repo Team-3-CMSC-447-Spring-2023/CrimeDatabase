@@ -24,7 +24,9 @@
 5. Next, in the Source Code Editor of your choosing, either Windows Command Prompt, Visual Studio Code, 
    PyCharm, etc., run the "**database.py**" Python code in a terminal based on the version of Python you have installed on your computer by running the command "**python database.py**".
    ```
-   WARNING: Do not press "Ctrl + C" on your computer keyboard or laptop keyboard to stop the Python                File "database.py" from running, otherwise, the data tables coded in the "database.py" Python File will not be generated in your MySQL Workbench.
+   WARNING: Do not press "Ctrl + C" on your computer keyboard or laptop keyboard to stop the Python
+   File "database.py" from running, otherwise, the data tables coded in the "database.py" Python File
+   will not be generated in your MySQL Workbench.
    ```
 
 6. Then, if you are using Microsoft Windows, click on the Windows "**Start**" menu located on the bottom left-corner
