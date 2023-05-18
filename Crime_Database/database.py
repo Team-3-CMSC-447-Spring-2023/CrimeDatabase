@@ -70,7 +70,6 @@ The Function "def insertWeapon(crime_data)" inserts data into the Weapon Table.
 def insertWeapon(crime_data):
     # Take the Weapon Data from the Comma-Separated Values CSV File "Part_1_Crime_Data.csv".
     weapon = (crime_data["Weapon"].unique())
-    print(weapon)
 
     # The Weapon Array contains the names of all the weapons.
     weapon_array = np.array(weapon)
@@ -78,7 +77,7 @@ def insertWeapon(crime_data):
     for i in range(len(weapon_array)):
         # Added a progress meter that is the number of inserted weapons compared to the total number of weapons to 
         # help with knowing how long it will take.
-        print(f"Inserting Weapon: {i}/{len(weapon_array)}         ", end="\r")
+        print(f"Inserting Weapon: {i+1}/{len(weapon_array)}         ", end="\r")
 
         # Insert the Weapon ID represented as "weapon_id" in the "weapon" Table. In addition, insert the Weapon Name
         # represented as "weapon_name" in the "weapon" table.
@@ -94,7 +93,7 @@ The Function "def insertNeighborhood(crime_data)" inserts data into the Neighbor
 '''
 def insertNeighborhood(crime_data):
     neighborhood = (crime_data["Neighborhood"].unique())
-    print(neighborhood)
+    #print(neighborhood)
 
     neighborhood_array = np.array(neighborhood)
 
@@ -109,7 +108,7 @@ def insertNeighborhood(crime_data):
     for i in range(len(neighborhood_array)):
         # Added a progress meter that is the number of inserted neighborhoods compared to the total number of 
         # neighborhoods to help with knowing how long it will take.
-        print(f"Inserting Neighborhood: {i}/{len(neighborhood_array)}         ", end="\r")
+        print(f"Inserting Neighborhood: {i+1}/{len(neighborhood_array)}         ", end="\r")
 
         # Set the default Average Income Value represented by the "income" variable.
         income = 0
@@ -177,12 +176,12 @@ def insertCrime_type(crime_data):
     crime_type = crime_data[['CrimeCode', 'Description']].drop_duplicates(subset=['CrimeCode'])
     crime_type_array = np.array(crime_type)
 
-    # The crime_type_array contains tuples. The First Index of the tuple contains the Crime Type Name. The
-    # Second Index of the tuple contains the Crime Type Description.
+    # The crime_type_array contains tuples. The First Index of the tuple contains the Crime Type Name. The Second Index
+    # of the tuple contains the Crime Type Description.
     for i in range(len(crime_type_array)):
         # Added a progress meter that is the number of inserted crime types compared to the total number of crime
         # types to help with knowing how long it will take.
-        print(f"Inserting Crime Type: {i}/{len(crime_type_array)}         ", end="\r")
+        print(f"Inserting Crime Type: {i+1}/{len(crime_type_array)}         ", end="\r")
         # Insert the data into the "crime_type" Table.
         cursor.execute('INSERT INTO crime_type (type_name, type_Description) VALUES(%s, %s)', (crime_type_array[i][0], crime_type_array[i][1]))
         mydb.commit()
@@ -209,7 +208,7 @@ def insertCrime(crime_data):
     for i in range(len(crime_array)):
         # Added a progress meter that is the number of inserted crimes compared to the total number of crimes to 
         # help with knowing how long it will take.
-        print(f"Inserting Crime: {i}/{len(crime_array)}         ", end="\r")
+        print(f"Inserting Crime: {i+1}/{len(crime_array)}         ", end="\r")
         
         if crime_array[i][5] not in weapons:
             continue
@@ -225,17 +224,12 @@ def insertCrime(crime_data):
     mydb.commit()
 
     return 0
-
 '''
-The Function "def populate_database() populates the database that takes about 20 minutes with the 560,038 crimes
-currently in the Comma-Separated Value CSV File "Part_1_Crime_Data.csv". 
+The Function "def retrieve_crime_data()" loads the csv and processes it for insertion into the database.
 '''
-def populate_database():
-    dropTables()
-    createTables()
-
+def retrieve_crime_data(file_name):
     # Converts .csv into useable pandas data.
-    crime_data = pd.read_csv('Part_1_Crime_Data.csv')
+    crime_data = pd.read_csv(file_name)
 
     # Sets any non existing values to a default one.
     crime_data['CrimeCode'] = crime_data['CrimeCode'].fillna("N/A")
@@ -246,6 +240,15 @@ def populate_database():
     crime_data['Latitude'] = crime_data['Latitude'].fillna("-100000")
     crime_data['Longitude'] = crime_data['Longitude'].fillna("-100000")
 
+    return crime_data
+'''
+The Function "def populate_database() populates the database that takes about 20 minutes with the 560,038 crimes
+currently in the Comma-Separated Value CSV File "Part_1_Crime_Data.csv". 
+'''
+def populate_database():
+    dropTables()
+    createTables()
+    crime_data = retrieve_crime_data('Part_1_Crime_Data.csv')
 
     # Inserts the data into each table.
     insertWeapon(crime_data)
