@@ -4,7 +4,7 @@ from database import *
 mydb = mysql.connector.connect(
     host='localhost',
     user='root',
-    password='Sthblue0423306!',
+    password='',
     port='3306',
     database='crime_database'
 )
