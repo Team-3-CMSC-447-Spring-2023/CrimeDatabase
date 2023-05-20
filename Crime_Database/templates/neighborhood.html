@@ -61,7 +61,7 @@
 </head>
 
 <body class="helvetica">
-    <h1>Crime in Baltimore</h1>
+    <h1>Crime in Baltimore Filter By Neighborhood</h1>
     <div id="myCanvas">
         <div id="map" class="vh-100 vw-100 bg-near-white" style="height: 525px"></div>
         <!-- <div id="legend" class="bg-white fixed top-0 left-0 pa2 mt2 ml2 br1 o-90" style="z-index: 999; width: 380px"> -->
@@ -69,25 +69,11 @@
     <h2>Filter by:</h2>
     <h2>
         <!-- href to a different html file, switch to whichever we decide upon -->
-        <a href="crime_date">
-            <button id="myButton">Crime Date</button>
-        </a>
-        <!-- <a href="neighborhood">
-            <button id="myButton">Neighborhood</button>
-        </a> -->
-        <a href="crime_type">
-            <button id="myButton">Type of Crime</button>
-        </a>
-        <a href="weapon">
-            <button id="myButton">Weapon</button>
-        </a>
-        <a href="food_desert">
-            <button id="myButton">Food Desert</button>
-        </a>    
+        <a href=".">
+            <button id="myButton">Back</button>
     </h2>
 
     <script>
-
     var map = L.map('map', {
         zoomControl: false, // Add zoom control separately below
         center: [39.2904, -76.6122], // Initial map center
@@ -122,7 +108,5 @@
         heat.addTo(map)
 
     </script>
-
     </body>
-
     </html>

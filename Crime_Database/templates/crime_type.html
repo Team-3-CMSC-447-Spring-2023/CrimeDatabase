@@ -1,0 +1,90 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crime In Baltimore</title>
+    <style>
+        body {
+        background-color: #333; /* nice gray #333*/
+        padding: 10px;
+        }   
+        h1{
+            color: rgb(255, 255, 255);
+            margin: 5px;
+            font-size: 35px;
+            text-align: center;
+        }
+
+        h2{
+            color: rgb(255, 255, 255);
+            margin: 5px;
+            font-size: 20px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+          #myButton {
+            background-color: rgb(108, 199, 255); /*rgb(170, 244, 255); /* bright/pastel green #AFA*/
+            width: 200px;
+            color: #000;
+                border-radius: 10px;
+            border: 0px;
+            padding: 10px;
+            margin: 8px;
+            font-size: 18px;
+            }
+        
+        #myButton:hover {
+            background-color: #555; /* Add a dark-grey background on hover */
+        }  
+        #myCanvas {
+        border: 5px solid rgb(255, 255, 255);
+        border-radius: 10px;
+        background-color: rgb(255, 255, 255);
+        width: 1000px;
+        margin: auto;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        }
+    </style>
+</head>
+
+<body class="helvetica">
+    <h1>Crime in Baltimore Filter By Crime Type</h1>
+    <div id="myCanvas">
+        <div id="piechart_3d" style="width: 900px; height: 500px;"></div>
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <script type="text/javascript">
+            google.charts.load("current", {packages:["corechart"]});
+            google.charts.setOnLoadCallback(drawChart);
+            function drawChart() {
+            // var data = google.visualization.arrayToDataTable({{pieChartData}});
+            // Retrieve the JSON string from Flask
+            var pieChartData = JSON.parse('{{ pieChartData_json | safe }}');
+
+            // Create the data table
+            var data = google.visualization.arrayToDataTable(pieChartData);
+
+            var options = {
+                is3D: true,
+            };
+    
+            var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
+            chart.draw(data, options);
+            google.sharts.load();
+            }
+        </script>
+    </div>
+    <h2>Return to all filters:</h2>
+    <h2>
+        <!-- href to a different html file, switch to whichever we decide upon -->
+        <a href=".">
+            <button id="myButton">Back</button>
+    </h2>
+    </body>
+    </html>
