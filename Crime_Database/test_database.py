@@ -1,3 +1,6 @@
+# test_database.py
+# Execute the command "python test_database.py" to print out the output for the database's White-Box Testing
+# Actual Ouput Results.
 import mysql.connector
 from database import *
 
@@ -25,8 +28,6 @@ results = cursor.fetchall()
 print("Test #3: database.py: createTables() Function", "Expected Value Tables: weapon, neighborhood, crime_types, crime", f"Actual Value {results}")
 
 crime_data = retrieve_crime_data('sample_test_data.csv')
-
-    # Inserts the data into each table.
     
 print("Test #4: database.py: insertWeapons(crime_data) Function", "Expected Value 0", f"Actual Value {insertWeapon(crime_data)}")
 mydb.cmd_reset_connection()

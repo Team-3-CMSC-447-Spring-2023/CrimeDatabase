@@ -61,7 +61,7 @@
 </head>
 
 <body class="helvetica">
-    <h1>Crime in Baltimore Filter By Neighborhood</h1>
+    <h1>Crime in South West Baltimore</h1>
     <div id="myCanvas">
         <div id="map" class="vh-100 vw-100 bg-near-white" style="height: 525px"></div>
         <!-- <div id="legend" class="bg-white fixed top-0 left-0 pa2 mt2 ml2 br1 o-90" style="z-index: 999; width: 380px"> -->
@@ -71,6 +71,14 @@
         <!-- href to a different html file, switch to whichever we decide upon -->
         <a href=".">
             <button id="myButton">Back</button>
+        <a href="crime_area">
+            <button id="myButton">Central</button>
+        <a href="crime_area_northeast">
+            <button id="myButton">North East</button>
+        <a href="crime_area_northwest">
+            <button id="myButton">North West</button>
+        <a href="crime_area_southeast">
+            <button id="myButton">South East</button>
     </h2>
 
     <script>
@@ -79,7 +87,7 @@
         center: [39.2904, -76.6122], // Initial map center
         zoom: 14, // Initial zoom level
         attributionControl: false, // Instead of default attribution, we add custom at the bottom of script
-        scrollWheelZoom: false
+        scrollWheelZoom: true
     })
 
     // Add zoom in/out buttons to the top-right

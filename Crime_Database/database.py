@@ -1,3 +1,7 @@
+# database.py
+# Execute the command "python database.py" to print out the output for the database's Black-Box Testing 
+# Actual Output Results. Then, execute the command "python -m flask run" to generate the "Crime in Baltimore" Flask
+# Web App Heat Map and Data Filter buttons.  
 import mysql.connector
 import pandas as pd
 import numpy as np
@@ -68,7 +72,7 @@ def createTables():
 The Function "def insertWeapon(crime_data)" inserts data into the Weapon Table.
 '''
 def insertWeapon(crime_data):
-    # Take the Weapon Data from the Comma-Separated Values CSV File "Part_1_Crime_Data.csv".
+    # Take the Weapon Data from the Comma-Separated Values CSV File provided.
     weapon = (crime_data["Weapon"].unique())
 
     # The Weapon Array contains the names of all the weapons.
@@ -92,6 +96,7 @@ def insertWeapon(crime_data):
 The Function "def insertNeighborhood(crime_data)" inserts data into the Neighborhood Table.
 '''
 def insertNeighborhood(crime_data):
+    # Take the Neighborhood Data from the Comma-Separated Value CSV File provided.
     neighborhood = (crime_data["Neighborhood"].unique())
     #print(neighborhood)
 
@@ -201,10 +206,13 @@ def insertCrime(crime_data):
     query = "SELECT * FROM weapon"
     cursor.execute(query)
     result = cursor.fetchall()
+
+    # Put "weapons" in a dictionary in order to speed up the identification.
     weapons = {}
     for weapon in result:
         weapons[weapon[1]] = weapon[0]
 
+    inserted_count = 0
     for i in range(len(crime_array)):
         # Added a progress meter that is the number of inserted crimes compared to the total number of crimes to 
         # help with knowing how long it will take.
@@ -221,14 +229,20 @@ def insertCrime(crime_data):
             # Fetch the time from the First Index that is Index 1 and then store it in the "time" Variable.
             cursor.execute('INSERT INTO crime (crime_id, neighborhood_name, weapon_id, type_name, crime_date, crime_time, latitude, longitude) VALUES(%s, %s, %s, %s, %s, %s, %s, %s)',
                         (i, crime_array[i][6], weapons[crime_array[i][5]], crime_array[i][2], datetime[0], datetime[1], crime_array[i][7],crime_array[i][8]))
+            inserted_count += 1
     mydb.commit()
+    # The Print Statement adds a line break for readability.
+    print()
+    print(f"\tCrimes Inserted: {inserted_count}")
+    print(f"\tCrimes with Missing Data: {len(crime_array) - inserted_count}")
 
     return 0
 '''
-The Function "def retrieve_crime_data()" loads the csv and processes it for insertion into the database.
+The Function "def retrieve_crime_data()" loads the Comma-Separated Values CSV File and processes it for insertion 
+into the database.
 '''
 def retrieve_crime_data(file_name):
-    # Converts .csv into useable pandas data.
+    # Convert the Comma-Separted Values .csv File into useable "pandas" data.
     crime_data = pd.read_csv(file_name)
 
     # Sets any non existing values to a default one.
