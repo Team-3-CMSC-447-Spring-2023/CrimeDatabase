@@ -72,9 +72,12 @@
         <a href="crime_date">
             <button id="myButton">Crime Date</button>
         </a>
-        <!-- <a href="neighborhood">
-            <button id="myButton">Neighborhood</button>
-        </a> -->
+        <a href="crime_time_noon">
+            <button id="myButton">Crime Time of Day</button>
+        </a>
+        <a href="crime_area">
+            <button id="myButton">Crime Area</button>
+        </a>
         <a href="crime_type">
             <button id="myButton">Type of Crime</button>
         </a>
@@ -93,7 +96,7 @@
         center: [39.2904, -76.6122], // Initial map center
         zoom: 14, // Initial zoom level
         attributionControl: false, // Instead of default attribution, we add custom at the bottom of script
-        scrollWheelZoom: false
+        scrollWheelZoom: true
     })
 
     // Add zoom in/out buttons to the top-right

@@ -61,7 +61,7 @@
 </head>
 
 <body class="helvetica">
-    <h1>=Baltimore Food Desert</h1>
+    <h1>Baltimore Food Desert</h1>
     <div id="myCanvas">
         <div id="map" class="vh-100 vw-100 bg-near-white" style="height: 525px"></div>
         <!-- <div id="legend" class="bg-white fixed top-0 left-0 pa2 mt2 ml2 br1 o-90" style="z-index: 999; width: 380px"> -->
@@ -70,7 +70,7 @@
     <h2>
         <!-- href to a different html file, switch to whichever we decide upon -->
         <a href=".">
-            <button id="myButton">Back</button>
+            <button id="myButton">Back To All Filters</button>
     </h2>
 
     <script>
@@ -79,7 +79,7 @@
         center: [39.2904, -76.6122], // Initial map center
         zoom: 14, // Initial zoom level
         attributionControl: false, // Instead of default attribution, we add custom at the bottom of script
-        scrollWheelZoom: false
+        scrollWheelZoom: true
     })
 
     // Add zoom in/out buttons to the top-right
@@ -105,7 +105,7 @@
         // in this case the weight will be the food quantity. Once the lat and long are added to the 
         // database I will see if the radius or wegihts need to be tweaked
         var heat = L.heatLayer({{heatmapData}}, {
-        radius: 9
+        radius: 15
         })
         // Add the heatlayer to the map
         heat.addTo(map)
