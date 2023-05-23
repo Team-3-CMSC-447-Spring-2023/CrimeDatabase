@@ -5,7 +5,8 @@ Our project was to create a heat map visualization of crime data in the city of 
 
 ## **2. System Overview**
 ### 2.1 Background
-Blank
+From an administrator standpoint the system is fairly simple. It is currently set up as a python Flask app using the app.py file, which when run hosts the site locally. Instalation instructions for the statbase can be found in section 3.1. To start the app, simply run the app.py file, which should output a link that will open the site on your browser.
+In terms of day to day operations there isn't much, the site can mostly be left on its own. For regular matinence, the database needs to be updated and backed up periodically. New data can be retrieved from [Open Baltimore](https://data.baltimorecity.gov/). Instructions for updating the data and backing up the database can be found in sections 3.2 and 3.3 respectivly. When the data is updated, you should also go into the app.py file and update any hardcoded dates for the filters, to ensure date ranges(past year, past 5 years, etc.) are accurate whenthe data is filtered. If the database crashes, instructions for recovery can be found in section 3.3, so long as you have periodically backed up the database. If you haven't, you will have to rebuild it using the database.py file.
 
 ### 2.2 Hardware an Software Requirements
 **Required Hardware**
@@ -17,7 +18,7 @@ Blank
 - Windows/MacOs/Linux operating system
 - MySql 8.0 database or equivalent
 - Python 3.10 or greater
-- pip packages: pandas, numpy, mysql-connector-python, python-dotenv
+- pip packages: pandas, numpy, mysql-connector-python, python-dotenv, flask
 
 ## **3. Administrative Procedures**
 ### 3.1 Installation
@@ -32,6 +33,7 @@ Blank
    source-code editor that can run Python code, type the following commands in your terminal to successfully install those commands:
    * pip install mysql-connector-python
    * py -m pip install install python-dotenv
+   * pip install Flask
    * pip install pandas
    * pip install numpy
       - NOTE: Make sure that the installation commands are installed in the correct "C:\...." File Path where your  Python File will be located. 
@@ -92,7 +94,10 @@ Blank
 
 ## **4. Troubleshooting**
 ### 4.1 Dealing with Error Messages and Failures
-Blank
+If the database fails or crashes, follow the instructions in section 3.3 to restore the database from a backup. If the database isn't backed up follow the installation instructions as nessicary to re-install the database.
+If the site itself crashes or fails stop running app.py and restart it. If when you try to run app.py you get an error about not finding a file or function, check that you properly followed the installiation instructions and installed all nessicary libraries and files.
 
 ### 4.2 Known Bugs and Limitations
-Blank
+There are currently no known bugs in the system.
+Current system limitations include hosting and the filters. Currently, the system is built using a Flask app, and can only be hosted locally. In other words, it can only be accessed from the local device. In addition, the filters are limited. You can only use one filter at a time, the app doesn't have the funconality to apply multiple filters at once. In addition, there is little customization for the filters. You can filter the data using the buttons that filter by preset values. For example, if you wanted to filter by date you can only choose to view by all time, last 5 years, last year, or last month.
+The system is also limited in terms of what data you can see. The avaiable data for the crimes is limited, and you can only view the overall data. There is currently no implementation for viewing data about a specific crime, or data about specific types of crimes.
