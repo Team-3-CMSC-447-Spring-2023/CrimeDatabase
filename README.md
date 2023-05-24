@@ -1,5 +1,5 @@
-Team Memebers
-# HASAN ALI
+# Team Memebers
+# Hasan Ali
 # Chloe Farrell
 # Talha Hussain
 # Thomas Nguyen
