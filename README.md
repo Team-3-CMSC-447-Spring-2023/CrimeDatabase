@@ -1,9 +1,9 @@
 # Team Memebers
-Hasan Ali
-Chloe Farrell
-Talha Hussain
-Thomas Nguyen
-Riley Sheehy
+Hasan Ali, 
+Chloe Farrell, 
+Talha Hussain, 
+Thomas Nguyen, 
+Riley Sheehy, 
 Coby ziv
 
 # The project as two folders: Documentations and Crime_Database
