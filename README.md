@@ -10,10 +10,11 @@ Coby ziv
 In Documentations, you will find:
   1. Administrator Manual
   3. Use-Case Diagram
-  4. Architecture Diagram
-  5. Activity Diagram
-  6. Enitity Relationship Diagram
-  7. User Interface Diagram
+  4. Use-Case Diagram
+  5. Architecture Diagram
+  6. Activity Diagram
+  7. Enitity Relationship Diagram
+  8. User Interface Diagram
 
 In Crime_database, you will find all of the code:
   1. Databse creater python file "database.py"
