@@ -9,6 +9,7 @@ Coby ziv
 # The project as two folders: Documentations and Crime_Database
 In Documentations, you will find:
   1. Administrator Manual
+  2. Test Cases
   3. Use-Case Diagram
   4. Use-Case Diagram
   5. Architecture Diagram
